@@ -11,20 +11,20 @@ def load_pinyin_dict(pin):
   for line in open(pin):
     line_u = line.strip().decode('utf-8')
     word = line_u[0]
-    pinyin = line_u[1:].split(',')[0][:-1]
+    pinyin = line_u[2:].split(' ')[0][:-1]
     char_dict[word] = pinyin
   return char_dict
-pinyin_dict = load_pinyin_dict(os.path.join(os.path.dirname(__file__), 'conf/convert-utf-8.txt'))
+pinyin_dict = load_pinyin_dict(os.path.join(os.path.dirname(__file__), 'conf/convert-utf8'))
 
 def load_pinyins_dict(pin):
   char_dict = {}
   for line in open(pin):
     line_u = line.strip().decode('utf-8')
     word = line_u[0]
-    pinyins = [v[:-1] for v in line_u[1:].split(',')]
+    pinyins = [v[:-1] for v in line_u[2:].split(' ')]
     char_dict[word] = pinyins
   return char_dict
-pinyins_dict = load_pinyins_dict(os.path.join(os.path.dirname(__file__), 'conf/convert-utf-8.txt'))
+pinyins_dict = load_pinyins_dict(os.path.join(os.path.dirname(__file__), 'conf/convert-utf8'))
 
 
 def str_to_pinyin(line, char_dict=pinyin_dict):
